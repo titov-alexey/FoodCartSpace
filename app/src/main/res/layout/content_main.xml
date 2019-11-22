@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="56dp"
 
-    tools:context=".MainActivity"
+    tools:context=".activities.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <GridLayout

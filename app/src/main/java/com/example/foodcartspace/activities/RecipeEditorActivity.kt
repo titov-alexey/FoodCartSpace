@@ -1,11 +1,8 @@
-package com.example.foodcartspace
+package com.example.foodcartspace.activities
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-
-
+import com.example.foodcartspace.R
 
 
 class RecipeEditorActivity : AppCompatActivity() {

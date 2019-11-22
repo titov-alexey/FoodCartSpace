@@ -1,15 +1,15 @@
-package com.example.foodcartspace
+package com.example.foodcartspace.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
+import com.example.foodcartspace.adapters.BasketAdapter
+import com.example.foodcartspace.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -24,19 +24,20 @@ class MainActivity : AppCompatActivity() {
 
         val baskets: ArrayList<String> = ArrayList()
 
-        for (i in 1..50) {
-            baskets.add("basket $i")
-        }
+        baskets.add("new_basket")
 
         val intent = Intent(this, RecipeEditorActivity::class.java)
 
         basket_recycle_view.layoutManager = LinearLayoutManager(this, OrientationHelper.HORIZONTAL, false)
-        basket_recycle_view.adapter = BasketAdapter(baskets)
+        basket_recycle_view.adapter =
+            BasketAdapter(baskets)
 
         fab.setOnClickListener {
             startActivity(intent)
         }
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
