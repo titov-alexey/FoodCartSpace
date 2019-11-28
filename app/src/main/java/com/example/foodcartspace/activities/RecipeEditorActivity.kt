@@ -3,6 +3,9 @@ package com.example.foodcartspace.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.foodcartspace.R
+import com.example.foodcartspace.adapters.RecipeAdapter
+import com.example.foodcartspace.entities.ProductEntity
+import kotlinx.android.synthetic.main.activity_recipe_editor.*
 
 
 class RecipeEditorActivity : AppCompatActivity() {
@@ -17,6 +20,9 @@ class RecipeEditorActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setTitle("RecipeEditor")
 
+        val products = ArrayList<ProductEntity>()
+
+        product_recycler_view.adapter = RecipeAdapter(products)
 //        for (i in 1..15){
 //            saveText(i.toString(), "TEST")
 //        }
