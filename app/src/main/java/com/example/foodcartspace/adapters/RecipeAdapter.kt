@@ -24,11 +24,12 @@ class RecipeAdapter(val items: ArrayList<ProductEntity>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.numberPicker.minValue = 1
         holder.numberPicker.maxValue = 100
-        holder.editNumber.text.insert(0,"0")
+        holder.productName.setText(items[position].name)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val numberPicker : NumberPicker = itemView.findViewById(R.id.numberPicker)
-        val editNumber : EditText = itemView.findViewById(R.id.editNumber)
+        val productCount : EditText = itemView.findViewById(R.id.productCount)
+        val productName : EditText = itemView.findViewById(R.id.productName)
     }
 }

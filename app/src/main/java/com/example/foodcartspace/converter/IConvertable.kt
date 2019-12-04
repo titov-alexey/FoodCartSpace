@@ -15,7 +15,7 @@ interface IConvertable {
      *      V = объем
      *
      */
-    val density: Int
+    val density: Int?
 
 
     /**

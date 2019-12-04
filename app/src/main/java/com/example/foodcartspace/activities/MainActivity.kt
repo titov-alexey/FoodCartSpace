@@ -1,21 +1,16 @@
 package com.example.foodcartspace.activities
 
-import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodcartspace.BuildConfig
 import com.example.foodcartspace.adapters.BasketAdapter
 import com.example.foodcartspace.R
+import com.example.foodcartspace.entities.BasketEntity
 import com.example.foodcartspace.entities.DBHelper
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,10 +23,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val baskets: ArrayList<String> = ArrayList()
+        val baskets: ArrayList<BasketEntity> = ArrayList()
         val db = DBHelper(this)
 
-        baskets.add("new_basket")
+        val cursor = db.getBaskets()
+        if (cursor != null && cursor.count != 0) {
+            cursor.moveToFirst()
+            baskets.add(BasketEntity(cursor.getString(cursor.getColumnIndex("name")), cursor.getString(cursor.getColumnIndex("basket_id"))))
+            while (cursor.moveToNext()){
+                baskets.add(BasketEntity(cursor.getString(cursor.getColumnIndex("name")), cursor.getString(cursor.getColumnIndex("basket_id"))))
+            }
+        }
+
+        baskets.add(0,BasketEntity("Добавить корзину", "0"))
 
 
 
@@ -42,10 +46,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, RecipeEditorActivity::class.java)
             startActivity(intent)
         }
-
-
-
-
 
     }
 

@@ -3,29 +3,42 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
     <EditText
-        android:id="@+id/product_name"
-        android:layout_width="297dp"
-        android:layout_height="45dp"
-        app:layout_constraintEnd_toStartOf="@+id/editNumber"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editNumber"
-        android:layout_width="wrap_content"
+        android:id="@+id/productName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/productCount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/productCount"
+        android:layout_width="wrap_content"
+        android:minWidth="35dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/numberPicker"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/productName"
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no"
+        android:hint="0"
+        android:gravity="center"
+        android:maxLength="3"/>
 
     <NumberPicker
         android:id="@+id/numberPicker"
-        style="@android:style/Theme.Holo.Dialog.NoActionBar.MinWidth"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productCount"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@ class Measure(val product: IConvertable, val name: String, val volume: Float ) {
 //    private val volume: Float = 18.0F
 
     fun getMass(): Float {
-        return (product.density * volume) * 1000
+        return (product.density!! * volume) * 1000
     }
 
 

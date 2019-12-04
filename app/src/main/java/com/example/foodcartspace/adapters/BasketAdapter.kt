@@ -9,14 +9,15 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodcartspace.R
 import com.example.foodcartspace.activities.BasketEditorActivity
+import com.example.foodcartspace.entities.BasketEntity
 
-class BasketAdapter(val baskets: ArrayList<String>) : RecyclerView.Adapter<BasketAdapter.ViewHolder>() {
+class BasketAdapter(val baskets: ArrayList<BasketEntity>) : RecyclerView.Adapter<BasketAdapter.ViewHolder>() {
 
 
     override fun getItemCount() = baskets.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bottomTitle.text = baskets[position]
+        holder.bottomTitle.text = baskets[position].basketName
         holder.itemView.setOnClickListener{
             val intent = Intent(it.context, BasketEditorActivity::class.java)
             startActivity(it.context,intent,null)

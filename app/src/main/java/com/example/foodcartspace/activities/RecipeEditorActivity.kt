@@ -23,7 +23,10 @@ class RecipeEditorActivity : AppCompatActivity() {
         supportActionBar?.setTitle("RecipeEditor")
 
         val products = ArrayList<ProductEntity>()
-        products.add(0, ProductEntity("ass", 600))
+        for (i in 0..100){
+            products.add(i, ProductEntity("ass", 600))
+        }
+
 
         product_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         product_recycler_view.adapter = RecipeAdapter(products)
