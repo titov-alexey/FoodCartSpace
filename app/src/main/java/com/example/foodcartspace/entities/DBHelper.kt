@@ -73,4 +73,9 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         val db = this.readableDatabase
         return db.rawQuery("select * from $DATABASE_TABLE_BASKETS", null)
     }
+
+    fun getMeasures() : Cursor?{
+        val db = this.readableDatabase
+        return db.rawQuery("select * from $DATABASE_TABLE_MEASURES", null)
+    }
 }

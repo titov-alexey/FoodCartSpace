@@ -1,5 +1,6 @@
 package com.example.foodcartspace.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodcartspace.R
 import com.example.foodcartspace.entities.ProductEntity
 
-class RecipeAdapter(val items: ArrayList<ProductEntity>) : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
+class RecipeAdapter(val items: ArrayList<ProductEntity>, val measureNames: Array<String>) : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,8 +23,10 @@ class RecipeAdapter(val items: ArrayList<ProductEntity>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.numberPicker.displayedValues = measureNames
+        holder.numberPicker.maxValue = measureNames.size -1
         holder.numberPicker.minValue = 1
-        holder.numberPicker.maxValue = 100
+
         holder.productName.setText(items[position].name)
     }
 
