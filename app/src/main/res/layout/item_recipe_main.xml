@@ -32,7 +32,7 @@
         android:gravity="center"
         android:maxLength="3"/>
 
-    <NumberPicker
+    <com.shawnlin.numberpicker.NumberPicker
         android:id="@+id/numberPicker"
         android:layout_width="70dp"
         android:layout_height="45dp"
@@ -40,6 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/productCount"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UnusedAttribute" />
+        app:np_fadingEdgeEnabled="false"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

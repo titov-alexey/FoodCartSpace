@@ -1,14 +1,19 @@
 package com.example.foodcartspace.activities
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import com.example.foodcartspace.App
 import com.example.foodcartspace.R
 import kotlinx.android.synthetic.main.activity_basket_editor.*
+import java.util.*
+
 
 class BasketEditorActivity : AppCompatActivity() {
 
-
-//    private var sPref = getSharedPreferences("Example.xml", Context.MODE_PRIVATE)
+    val db = App.getAppInstance().database
+    var isNewBasket: Boolean = false
+    val defaultValue: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,11 +21,31 @@ class BasketEditorActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setTitle("BasketEditor")
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+
+
+        val database = db.basketDao()
+        val fk_basket = intent.getLongExtra("fk_basket_id",defaultValue)
+        isNewBasket = fk_basket == defaultValue
+
+        if(isNewBasket){
+            basket_name.setText(Calendar.getInstance().time.toString())
+        } else{
+            basket_name.setText(intent.getStringExtra("basket_name"))
+        }
+
 
         number_picker.minValue = 1
         number_picker.maxValue = 10
+
+
+
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_basketeditor, menu)
+        return true
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

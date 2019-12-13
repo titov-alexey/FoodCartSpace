@@ -1,4 +1,4 @@
-package com.example.foodcartspace.entities
+package com.example.foodcartspace.dbhelpers
 
 import android.content.Context
 import android.database.Cursor
@@ -7,7 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import com.example.foodcartspace.BuildConfig
 
-class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DBHelper(context: Context) : SQLiteOpenHelper(context,
+    DATABASE_NAME, null,
+    DATABASE_VERSION
+) {
 
     override fun onCreate(db: SQLiteDatabase?) {
         if (BuildConfig.DEBUG){

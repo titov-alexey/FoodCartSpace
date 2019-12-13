@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">FoodCartSpace</string>
     <string name="action_settings">Settings</string>
-    <string name="add_basket_text">Добавить</string>
+    <string name="add_basket_text">Добавить корзину</string>
     <string name="basket_name_title">Название корзины</string>
+    <string name="save_btn_actionbar">Save</string>
 </resources>

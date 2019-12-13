@@ -1,7 +1,6 @@
 package com.example.foodcartspace.activities
 
 import android.content.Intent
-import android.database.Cursor
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -10,37 +9,44 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodcartspace.adapters.BasketAdapter
 import com.example.foodcartspace.R
-import com.example.foodcartspace.entities.BasketEntity
-import com.example.foodcartspace.entities.DBHelper
+import com.example.foodcartspace.App
+import com.example.foodcartspace.dbhelpers.entities.BasketEntity
+import com.example.foodcartspace.dbhelpers.dao.BasketNameDao
+import com.example.foodcartspace.dbhelpers.entities.BasketsNameEntity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var basketNameDao: BasketNameDao
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        val db = App.getAppInstance().database
 
-        val baskets: ArrayList<BasketEntity> = ArrayList()
-        val db = DBHelper(this)
+        val basketsNames: ArrayList<BasketsNameEntity> = ArrayList()
 
-        val cursor = db.getBaskets()
-        if (cursor != null && cursor.count != 0) {
-            cursor.moveToFirst()
-            baskets.add(BasketEntity(cursor.getString(cursor.getColumnIndex("name")), cursor.getString(cursor.getColumnIndex("basket_id"))))
-            while (cursor.moveToNext()){
-                baskets.add(BasketEntity(cursor.getString(cursor.getColumnIndex("name")), cursor.getString(cursor.getColumnIndex("basket_id"))))
-            }
+        basketNameDao = db.basketsNameDao()
+
+
+        for (i in db.basketsNameDao().getAll()){
+            basketsNames.add(i)
         }
 
-        baskets.add(0,BasketEntity("Добавить корзину", "0"))
+        basketsNames.add(0,
+            BasketsNameEntity(
+                    0,
+                "Добавить корзину"
+            )
+        )
 
 
 
         basket_recycle_view.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-        basket_recycle_view.adapter = BasketAdapter(baskets)
+        basket_recycle_view.adapter = BasketAdapter(basketsNames)
 
         fab.setOnClickListener {
             val intent = Intent(this, RecipeEditorActivity::class.java)
