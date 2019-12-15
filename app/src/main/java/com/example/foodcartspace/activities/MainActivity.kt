@@ -17,7 +17,7 @@ import com.example.foodcartspace.dbhelpers.entities.BasketsNameEntity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity() {
+class  MainActivity : AppCompatActivity() {
 
     private lateinit var basketNameDao: BasketNameDao
 
