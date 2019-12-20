@@ -33,7 +33,6 @@ class BasketAdapter(val baskets: ArrayList<BasketsNameEntity>) : RecyclerView.Ad
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-
         val bottomTitle: TextView =itemView.findViewById(R.id.bottomTitle)
     }
 }

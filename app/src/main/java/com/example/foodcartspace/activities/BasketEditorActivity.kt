@@ -1,14 +1,21 @@
 package com.example.foodcartspace.activities
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodcartspace.App
 import com.example.foodcartspace.R
+import com.example.foodcartspace.adapters.BasketEditorAdapter
 import com.example.foodcartspace.dbhelpers.dao.BasketDao
+import com.example.foodcartspace.dbhelpers.entities.BasketEntity
+import com.example.foodcartspace.dbhelpers.entities.ProductEntity
 import kotlinx.android.synthetic.main.activity_basket_editor.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class BasketEditorActivity : AppCompatActivity() {
@@ -27,8 +34,7 @@ class BasketEditorActivity : AppCompatActivity() {
         supportActionBar?.setTitle("BasketEditor")
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
-        number_picker.minValue = 1
-        number_picker.maxValue = 10
+        var products = ArrayList<BasketEntity>()
 
         val database = db.basketDao()
         val fk_basket = intent.getLongExtra("fk_basket_id",defaultValue)
@@ -38,7 +44,12 @@ class BasketEditorActivity : AppCompatActivity() {
             basket_name.setText(Calendar.getInstance().time.toString())
         } else{
             basket_name.setText(intent.getStringExtra("basket_name"))
+            products.addAll(database.getAll())
         }
+
+        product_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        product_recycler_view.adapter = BasketEditorAdapter(products)
+
 
 
 
@@ -54,8 +65,8 @@ class BasketEditorActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean { // Handle item selection
         return when (item.itemId) {
             R.id.ok_btn -> {
-                database.insertAll() // закончил здесь
-
+//                database.insertAll() // закончил здесь
+//
                 true
             }
             else -> super.onOptionsItemSelected(item)

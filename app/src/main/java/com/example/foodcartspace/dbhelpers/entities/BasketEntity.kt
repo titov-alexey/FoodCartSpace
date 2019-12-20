@@ -1,6 +1,6 @@
 package com.example.foodcartspace.dbhelpers.entities
 
-import androidx.annotation.ColorInt
+
 import androidx.room.*
 
 
