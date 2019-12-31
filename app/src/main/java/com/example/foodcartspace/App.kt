@@ -47,7 +47,7 @@ class App : Application() {
         basketsNameDao.insertAll(arrayOf(
             BasketsNameEntity(basket_id = 2, basket_name = "Пример")))
 
-        basketDao.insert(BasketEntity(null, 2, "", 1.0F, "бочка"))
+        basketDao.insert(BasketEntity(null, 2, "продукт", 1.0F, "бочка"))
 
         measuresDao.insertAll(arrayOf(MeasuresEntity(null, "Б. ложка", 18.0F),
             MeasuresEntity(null, "М. Ложка", 5.0F)))

@@ -12,10 +12,11 @@
         android:layout_height="wrap_content"
         android:width="350dp" />
 
-    <com.shawnlin.numberpicker.NumberPicker
+
+    <EditText
         android:id="@+id/productCount"
-        android:layout_width="wrap_content"
+        android:layout_width="61dp"
         android:layout_height="wrap_content"
-        app:np_lineSpacingMultiplier="10" />
+        android:inputType="numberDecimal"/>
 
 </LinearLayout>

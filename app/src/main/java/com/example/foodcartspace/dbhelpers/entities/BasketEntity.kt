@@ -14,7 +14,7 @@ import androidx.room.*
 data class BasketEntity(
     @PrimaryKey(autoGenerate = true ) val id: Long?,
     @ColumnInfo(name = "fk_basket_id") val fk_basket_id: Long,
-    @ColumnInfo(name = "p_name") val p_name: String,
+    @ColumnInfo(name = "p_name") var p_name: String,
     @ColumnInfo(name = "quantity") val quantity: Float,
     @ColumnInfo(name = "measure") val measure: String
     )

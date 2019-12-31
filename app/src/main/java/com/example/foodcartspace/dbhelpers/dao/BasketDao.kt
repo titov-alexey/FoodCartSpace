@@ -9,7 +9,7 @@ import com.example.foodcartspace.dbhelpers.entities.BasketsNameEntity
 interface BasketDao {
 
     @Query("SELECT * FROM Baskets")
-    fun getAll(): ArrayList<BasketEntity>
+    fun getAll(): List<BasketEntity>
 
     @Query("SELECT * FROM Baskets WHERE id = :id")
     fun getById(id:Long): BasketEntity

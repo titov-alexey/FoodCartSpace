@@ -16,7 +16,7 @@ import com.example.foodcartspace.dbhelpers.entities.ProductEntity
     BasketsNameEntity::class,
     MeasuresEntity::class,
     ProductEntity::class],
-    version = 2)
+    version = 4)
 abstract class RoomDBHelper : RoomDatabase() {
 
     abstract fun measuresDao(): MeasuresDao
