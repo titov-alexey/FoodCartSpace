@@ -27,25 +27,30 @@ class BasketEditorAdapter(val products: ArrayList<BasketEntity>) : RecyclerView.
         holder.productName.setText(products[position].p_name)
         holder.productCount.setText(products[position].quantity.toString())
 
-        holder.productName.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
-                products[position].p_name = s.toString()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
+        holder.productName.addTextChangedListener(SimpleTextWatcher(position, products))
+        holder.productCount.addTextChangedListener(SimpleTextWatcher(position, products))
 
     }
+
+
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var productName: EditText = itemView.findViewById(R.id.productName)
         var productCount: EditText = itemView.findViewById(R.id.productCount)
     }
 
+
+    class SimpleTextWatcher(private val position: Int, private val products: ArrayList<BasketEntity>) : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            products[position].p_name = s.toString()
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+        }
+    }
 }
